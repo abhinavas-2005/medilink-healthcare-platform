@@ -1,0 +1,140 @@
+<!-- templates/diet_nutrition_blog.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diet & Nutrition Blog</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f9f1;
+            color: #333;
+        }
+
+        .blog-header {
+            background-color: #008080;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+
+        .blog-header p {
+            font-size: 1.2em;
+        }
+
+        .blog-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .blog-post {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            margin-bottom: 30px;
+            transition: transform 0.2s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-post h2 {
+            color: #006d5b;
+            margin-bottom: 10px;
+        }
+
+        .blog-post p {
+            font-size: 1.05em;
+            line-height: 1.6em;
+        }
+
+        .blog-post button {
+            margin-top: 10px;
+            background-color: #00c897;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .blog-post button:hover {
+            background-color: #008080;
+        }
+
+        .extra-content {
+            display: none;
+            margin-top: 15px;
+            font-style: italic;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            .blog-header h1 {
+                font-size: 2em;
+            }
+
+            .blog-post {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="blog-header">
+        <h1>🥗 Eat Well, Live Well</h1>
+        <p>Your guide to a healthier, balanced lifestyle through better nutrition.</p>
+    </header>
+
+    <section class="blog-container">
+        <article class="blog-post">
+            <h2>Top 10 Superfoods</h2>
+            <p>Superfoods are packed with nutrients that boost your energy and immune system. Discover the top 10 superfoods and how to incorporate them into your daily meals.</p>
+            <button onclick="toggleDetails(this)">Read More</button>
+            <div class="extra-content">
+                <p>Include blueberries, spinach, salmon, nuts, and avocado for a powerful nutritional punch. Blend them into smoothies or add to your salads.</p>
+            </div>
+        </article>
+
+        <article class="blog-post">
+            <h2>Hydration Hacks</h2>
+            <p>Staying hydrated is essential but often overlooked. Learn practical hydration tips that go beyond just drinking water.</p>
+            <button onclick="toggleDetails(this)">Read More</button>
+            <div class="extra-content">
+                <p>Infuse water with fruits, eat water-rich foods like cucumbers and watermelon, and track your intake using apps or a simple checklist.</p>
+            </div>
+        </article>
+
+        <article class="blog-post">
+            <h2>Meal Prep for Busy People</h2>
+            <p>Don't let a hectic schedule compromise your nutrition. Here’s how you can prep your meals for the entire week in just a few hours.</p>
+            <button onclick="toggleDetails(this)">Read More</button>
+            <div class="extra-content">
+                <p>Batch cook grains and proteins, portion meals in containers, and freeze extras. Keep a plan to reduce stress and avoid takeouts.</p>
+            </div>
+        </article>
+    </section>
+
+    <script>
+        function toggleDetails(button) {
+            const content = button.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            button.textContent = content.style.display === 'block' ? 'Read Less' : 'Read More';
+        }
+    </script>
+</body>
+</html>

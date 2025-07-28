@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Treatment Files for {{ patient.username }}</h2>
+    {% for file in treatment_files %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <p><strong>Uploaded By:</strong> {{ file.hospital.username }}</p>
+                <p><strong>Uploaded At:</strong> {{ file.uploaded_at }}</p>
+                <a href="{{ file.file.url }}" class="btn btn-sm btn-primary" target="_blank">Download/View</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>No visible files available for this patient.</p>
+    {% endfor %}
+</div>
+{% endblock %}

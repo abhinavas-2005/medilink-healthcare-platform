@@ -1,0 +1,140 @@
+<!-- templates/yoga_blog.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yoga & Wellness Blog</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4ff;
+            color: #333;
+        }
+
+        .blog-header {
+            background-color: #3b82f6;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+
+        .blog-header p {
+            font-size: 1.2em;
+        }
+
+        .blog-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .blog-post {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            margin-bottom: 30px;
+            transition: transform 0.2s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-post h2 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .blog-post p {
+            font-size: 1.05em;
+            line-height: 1.6em;
+        }
+
+        .blog-post button {
+            margin-top: 10px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .blog-post button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .extra-content {
+            display: none;
+            margin-top: 15px;
+            font-style: italic;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            .blog-header h1 {
+                font-size: 2em;
+            }
+
+            .blog-post {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="blog-header">
+        <h1>🧘 Yoga for Mind & Body</h1>
+        <p>Explore the benefits of yoga and mindfulness to enhance your well-being.</p>
+    </header>
+
+    <section class="blog-container">
+        <article class="blog-post">
+            <h2>Beginner Yoga Poses</h2>
+            <p>Start your yoga journey with foundational poses that promote flexibility and calmness. This post covers simple routines you can do at home.</p>
+            <button onclick="toggleDetails(this)">Read More</button>
+            <div class="extra-content">
+                <p>Start with Mountain Pose, Downward Dog, and Child's Pose. Practice deep breathing and maintain each pose for 20–30 seconds.</p>
+            </div>
+        </article>
+
+        <article class="blog-post">
+            <h2>Benefits of Daily Practice</h2>
+            <p>Daily yoga practice can improve both mental clarity and physical strength. Learn how consistent practice changes your lifestyle.</p>
+            <button onclick="toggleDetails(this)">Read More</button>
+            <div class="extra-content">
+                <p>Consistency boosts flexibility, reduces anxiety, and improves sleep. Even 15 minutes a day can make a huge difference.</p>
+            </div>
+        </article>
+
+        <article class="blog-post">
+            <h2>Yoga for Stress Relief</h2>
+            <p>Yoga is a powerful tool for managing stress. We dive into techniques and poses that calm your nervous system.</p>
+            <button onclick="toggleDetails(this)">Read More</button>
+            <div class="extra-content">
+                <p>Try breathing exercises like alternate nostril breathing, and poses such as Legs-Up-the-Wall to reduce cortisol levels.</p>
+            </div>
+        </article>
+    </section>
+
+    <script>
+        function toggleDetails(button) {
+            const content = button.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            button.textContent = content.style.display === 'block' ? 'Read Less' : 'Read More';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Telemedicine App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<style>
+    .helptext {
+    display: none !important;
+}
+
+    /* Navbar Container */
+    nav {
+      background-color: #007bff; /* Bootstrap primary blue */
+      padding: 10px 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  
+    /* Navbar UL */
+    nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      justify-content: flex-end; /* Change to center or start if needed */
+      align-items: center;
+      gap: 20px;
+    }
+  
+    /* Navbar Items */
+    nav ul li {
+      display: inline-block;
+    }
+  
+    /* Navbar Links */
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+  
+    nav ul li a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  .navbar-brand{
+    font-weight:bold;
+  }
+  #l{
+    font-weight:bold;
+    color:white;
+  }
+  
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'dashboard' %}">TELEMED</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+<li class="nav-item">
+    <a id="l" class="nav-link" href="#">Logged in as {{ user.username }}</a>
+</li>
+<li class="nav-item">
+{% if user.user_type == 'patient' %}
+    <a id="l" class="btn btn-outline-primary" href="{% url 'book_mobile_clinic' %}">Book Mobile Clinic</a>
+{% elif user.user_type == 'hospital' %}
+    <a id="l" class="btn btn-outline-primary" href="{% url 'manage_mobile_clinic' %}">Manage Mobile Clinics</a>
+{% endif %}
+</li>
+
+
+{% if request.user.user_type == 'hospital' %}
+  <li class="nav-item">
+    <a id="l" class="nav-link" href="{% url 'scan_qr_view' %}">Scan QR Code</a>
+  </li>
+  <li class="nav-item">
+    <a id="l" class="nav-link" href="{% url 'upload_treatment_file' %}">Upload Treatment File</a>
+  </li>
+  {# Only show this if a file has been accessed via QR or manually #}
+  {# You can enable this dynamically in the future, for now show a sample link or leave commented #}
+  
+  {% comment %} <li class="nav-item">
+    <a class="nav-link" href="{% url 'shared_treatment_file' user.id %}">Shared Files</a>
+  </li>  {% endcomment %}
+  
+{% endif %}
+
+
+{% if request.user.user_type == 'patient' %}
+
+  <li class="nav-item">
+    <a id="l" class="nav-link" href="{% url 'view_my_treatment_files' %}">My Treatment Files</a>
+  </li>
+{% endif %}
+
+
+
+
+<li class="nav-item">
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" id="l" class="nav-link btn btn-link" style="padding: 0; border: none; background: none;">
+            Logout
+        </button>
+    </form>
+</li>
+{% else %}
+<li class="nav-item">
+    <a  id="l" class="nav-link" href="{% url 'login' %}">Login</a>
+</li>
+<li class="nav-item">
+    <a id="l" class="nav-link" href="{% url 'register' %}">Signup</a>
+</li>
+{% endif %}
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

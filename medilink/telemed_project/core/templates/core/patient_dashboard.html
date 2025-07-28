@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Animated Welcome Section -->
+<div class="text-center mb-5">
+    <h2 class="animated-text">Welcome, {{ request.user.username }}!🧑‍🤝‍🧑</h2>
+    <p class="sub-text">Your personalized care portal is ready. Let's connect you with a doctor. 🧠💡</p>
+    <a href="{% url 'book_appointment' %}" class="btn btn-success mt-3 animated-btn">Book New Appointment</a>
+</div>
+
+<!-- Table Section -->
+<div class="table-responsive fade-in">
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Meeting Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.doctor.username }}</td>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.time }}</td>
+                <td>{{ appointment.status }}</td>
+                <td>
+                    {% if appointment.meeting_link %}
+                        <a href="{{ appointment.meeting_link }}" target="_blank" class="btn btn-sm btn-primary">Join</a>
+                    {% else %}
+                        <span class="text-muted">Not Available</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" class="text-center">No appointments yet.</td></tr>
+            {% endfor %}
+{% comment %} 
+            {% for request in mobile_clinic_requests %}
+    <p>Status: {{ request.status }}</p>
+    {% if request.status == "Approved" %}
+        <p>Visit Date: {{ request.visit_date }}</p>
+        <p>Visit Time: {{ request.visit_time }}</p>
+    {% endif %}
+{% endfor %} {% endcomment %}
+        </tbody>
+    </table>
+    {% comment %} <div class="container mt-4">
+        
+    
+        <!-- Other dashboard content here -->
+    
+        {% include 'core/_mobile_clinic_section.html' %}
+    </div>
+</div> {% endcomment %}
+<h3 class="mt-4">My Mobile Clinic Requests</h3>
+
+{% if my_requests %}
+    {% for req in my_requests %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <p><strong>Symptoms:</strong> {{ req.symptoms }}</p>
+                <p><strong>Address:</strong> {{ req.address }}</p>
+                <p><strong>Status:</strong> 
+                    {% if req.status == 'Approved' %}
+                        <span class="text-success">Approved</span>
+                        <br><strong>Visit Date:</strong> {{ req.visit_date }}<br>
+                        <strong>Visit Time:</strong> {{ req.visit_time }}
+                    {% elif req.status == 'Rejected' %}
+                        <span class="text-danger">Rejected</span>
+                    {% else %}
+                        <span class="text-warning">Pending</span>
+                    {% endif %}
+                </p>
+                <p><strong>Requested At:</strong> {{ req.requested_at }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No mobile clinic requests found.</p>
+{% endif %}
+
+<!-- Add animation styles -->
+<style>
+    .animated-text {
+        font-size: 2.5rem;
+        font-weight: bold;
+        animation: slideIn 1s ease-in-out;
+    }
+
+    .sub-text {
+        font-size: 1.2rem;
+        color: #555;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .animated-btn {
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .animated-btn:hover {
+        transform: scale(1.05);
+        background-color: #28a745 !important;
+    }
+
+    .fade-in {
+        animation: fadeIn 2s ease-in;
+    }
+
+    @keyframes slideIn {
+        0% {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
+{% endblock %}
+

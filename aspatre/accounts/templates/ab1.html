@@ -1,0 +1,141 @@
+<!-- templates/mental_health_blog.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mental Health Blog</title>
+   
+    {% load static %}
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        .blog-header {
+            background-color: #0077b6;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+
+        .blog-header p {
+            font-size: 1.2em;
+        }
+
+        .blog-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .blog-post {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            margin-bottom: 30px;
+            transition: transform 0.2s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-post h2 {
+            color: #023e8a;
+            margin-bottom: 10px;
+        }
+
+        .blog-post p {
+            font-size: 1.05em;
+            line-height: 1.6em;
+        }
+
+        .blog-post button {
+            margin-top: 10px;
+            background-color: #00b4d8;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .blog-post button:hover {
+            background-color: #0077b6;
+        }
+
+        .extra-content {
+            display: none;
+            margin-top: 15px;
+            font-style: italic;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            .blog-header h1 {
+                font-size: 2em;
+            }
+
+            .blog-post {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="blog-header">
+        <h1>🧠 Mental Health Matters</h1>
+        <p>Your space to learn, reflect, and grow emotionally.</p>
+    </header>
+
+    <section class="blog-container">
+        <article class="blog-post">
+            <h2>Understanding Anxiety</h2>
+            <p>Anxiety is more than just feeling stressed or worried. It can be a serious condition that makes daily life challenging. In this blog, we explore how to recognize anxiety and manage it effectively.</p>
+            <button onclick="toggleDetails(this)">Read More</button>
+            <div class="extra-content">
+                <p>Tips for managing anxiety include practicing mindfulness, regular physical activity, talking to a therapist, and journaling your thoughts daily.</p>
+            </div>
+        </article>
+
+        <article class="blog-post">
+            <h2>Building Resilience</h2>
+            <p>Resilience is the ability to bounce back from life's challenges. Here, we discuss techniques to strengthen your mental resilience and stay emotionally strong through tough times.</p>
+            <button onclick="toggleDetails(this)">Read More</button>
+            <div class="extra-content">
+                <p>Practice gratitude, build a supportive network, and set achievable goals to enhance your mental strength.</p>
+            </div>
+        </article>
+
+        <article class="blog-post">
+            <h2>Benefits of Meditation</h2>
+            <p>Meditation helps reduce stress and improve emotional well-being. We look at different types of meditation and how you can get started today.</p>
+            <button onclick="toggleDetails(this)">Read More</button>
+            <div class="extra-content">
+                <p>Try guided meditation apps, join local meditation groups, or start with just 5 minutes a day focusing on your breath.</p>
+            </div>
+        </article>
+    </section>
+
+    <script>
+        function toggleDetails(button) {
+            const content = button.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            button.textContent = content.style.display === 'block' ? 'Read Less' : 'Read More';
+        }
+    </script>
+</body>
+</html>

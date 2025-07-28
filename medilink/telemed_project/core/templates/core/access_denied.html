@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h2 class="text-danger">🚫 Access Denied</h2>
+    <p class="lead">You are not allowed to view this patient's treatment records.</p>
+    <a href="{% url 'dashboard' %}" class="btn btn-primary mt-3">Go Back to Dashboard</a>
+</div>
+{% endblock %}

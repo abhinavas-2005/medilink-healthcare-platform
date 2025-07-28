@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {
+        background-color: #e9f5f9;
+    }
+
+    .hero-section {
+        background: linear-gradient(rgba(0, 123, 255, 0.5), rgba(0, 123, 255, 0.5)), 
+                    url('https://www.medicaldevice-network.com/wp-content/uploads/sites/23/2023/03/Shutterstock_Buravleva_stock-scaled.jpg') no-repeat center center/cover;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .welcome-card {
+        background-color: #ffffffcc;
+        padding: 3rem 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 600px;
+        width: 100%;
+        backdrop-filter: blur(5px);
+    }
+
+    .welcome-card h1 {
+        font-size: 2.7rem;
+        color: #004085;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+
+    .welcome-card p {
+        color: #333;
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .welcome-card a.btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+        border-radius: 30px;
+        margin: 0 10px;
+    }
+
+    .btn-login {
+        background-color: #007bff;
+        color: white;
+        border: none;
+    }
+
+    .btn-register {
+        background-color: transparent;
+        color: #007bff;
+        border: 2px solid #007bff;
+    }
+
+    .btn-login:hover, .btn-register:hover {
+        transform: translateY(-2px);
+        transition: 0.3s ease;
+    }
+</style>
+
+<div class="hero-section">
+    <div class="welcome-card">
+        <h1>Welcome to Telemedicine Portal</h1>
+        <p>Healthcare from the comfort of your home 🏠💉<br>Access expert doctors anytime, anywhere.</p>
+        <a href="{% url 'login' %}" class="btn btn-login">Login</a>
+        <a href="{% url 'register' %}" class="btn btn-register">Register</a>
+    </div>
+</div>
+{% endblock %}

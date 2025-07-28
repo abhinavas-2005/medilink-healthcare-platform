@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: url('https://image.freepik.com/free-vector/healthcare-medical-background-with-flat-icons-symbols_120542-251.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glass-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            color: #fff;
+        }
+
+        .glass-box h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0;
+            color: white;
+        }
+
+        .form-control:focus {
+            background: transparent;
+            box-shadow: none;
+            border-bottom: 1px solid #00f2fe;
+        }
+
+        .btn-login {
+            border-radius: 8px;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .form-check-label {
+            color: #ddd;
+        }
+
+        .forgot-link,
+        .register-link {
+            text-align: right;
+            color: #bbb;
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .register-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .forgot-link:hover,
+        .register-link a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="glass-box">
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <h3>
+        {{ form.username.label_tag }} <br>
+        {{ form.username }} <br> <br>
+        {{ form.password.label_tag }} <br>
+        {{ form.password }} <br> <br>
+        </h3>
+
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-4">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+            </div>
+            <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-login">Log In</button>
+        </div>
+
+        <div class="register-link">
+            Don't have an account? <a href="{% url 'register' %}">Register</a>
+        </div>
+    </form>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {
+        background-image: url('https://image.freepik.com/free-vector/healthcare-medical-background-with-flat-icons-symbols_120542-251.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .glass-card {
+        max-width: 400px;
+        margin: 5% auto;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 15px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: #fff;
+    }
+
+    .glass-card h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    label {
+        margin-top: 10px;
+        color: #fff;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: none;
+        border-radius: 10px;
+    }
+
+    .btn-register {
+        background-color: #00d9ff;
+        color: #fff;
+        border: none;
+        padding: 12px;
+        width: 100%;
+        border-radius: 10px;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .btn-register:hover {
+        background-color: #00c4e6;
+    }
+
+    .form-footer {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    /* Hide Django's password help text */
+    .helptext, ul.errorlist + ul {
+        display: none !important;
+    }
+</style>
+
+<div class="glass-card">
+    <h2>Register</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn-register" type="submit">Create Account</button>
+    </form>
+    <div class="form-footer">
+        Already have an account? <a href="{% url 'login' %}" style="color:#00d9ff;">Login</a>
+    </div>
+</div>
+{% endblock %}
+
+
+

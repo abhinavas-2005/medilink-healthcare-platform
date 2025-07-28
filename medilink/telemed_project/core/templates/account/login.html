@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  body {
+    background: url('https://image.freepik.com/free-vector/healthcare-medical-background-with-flat-icons-symbols_120542-251.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .glass-card h2 {
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  .glass-card input {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: #fff;
+    border-radius: 0.3rem;
+    padding: 10px;
+  }
+
+  .glass-card input::placeholder {
+    color: #f1f1f1;
+  }
+
+  .glass-card a {
+    color: #f1f1f1;
+    text-decoration: none;
+  }
+
+  .glass-card a:hover {
+    color: #ddd;
+    text-decoration: underline;
+  }
+
+  .btn-primary {
+    background-color: #ffffff;
+    color: #000;
+    border: none;
+    font-weight: bold;
+  }
+
+  .btn-outline-light {
+    border-color: #fff;
+    color: #fff;
+  }
+
+  .btn-outline-light:hover {
+    background-color: #fff;
+    color: #000;
+  }
+</style>
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="card glass-card shadow-lg p-4 w-100" style="max-width: 450px;">
+    <h2 class="text-center mb-4"> Login</h2>
+    <form method="post">
+      {% csrf_token %}
+      <h3>
+      {{ form.as_p }}
+      </h3>
+      <div class="d-flex justify-content-between mb-3">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary">Log In</button>
+        <a href="{% url 'register' %}" class="btn btn-outline-light">Register</a>
+      </div>
+    </form>
+    <p class="text-center mt-3">
+      Don’t have an account? 
+      <a href="{% url 'register' %}">Register here</a>
+    </p>
+  </div>
+</div>
+{% endblock %}
+
+
+
+
+

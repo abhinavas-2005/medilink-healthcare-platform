@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h3>My Treatment Files</h3>
+
+    {% if treatment_files %}
+        {% for file in treatment_files %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p><strong>Uploaded By:</strong> {{ file.hospital.username }}</p>
+                    <p><strong>Uploaded On:</strong> {{ file.created_at }}</p>
+                    <p><strong>Description:</strong> {{ file.description }}</p>
+                    {% comment %} <a href="{{ file.document.url }}" class="btn btn-sm btn-success" target="_blank">📄 View File</a> {% endcomment %}
+                    {% if file.document %}
+    <a href="{{ file.document.url }}" class="btn btn-sm btn-success" target="_blank">📄 View File</a>
+{% else %}
+    <span class="text-muted">No file uploaded</span>
+{% endif %}
+                    <!-- Visibility Toggle Button -->
+                    <form method="post" action="{% url 'toggle_qr_access' %}" class="d-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="file_id" value="{{ file.id }}">
+                        <button type="submit" class="btn btn-sm {% if file.visible_to_others %}btn-warning{% else %}btn-secondary{% endif %}">
+                            {% if file.visible_to_others %}
+                                Hide from Other Hospitals
+                            {% else %}
+                                Make Visible to Other Hospitals
+                            {% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No files uploaded yet.</p>
+    {% endif %}
+
+    <hr>
+    <h4>Your QR Code</h4>
+    {% if qr_code_base64 %}
+        <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="QR Code">
+    {% else %}
+        <p>QR Code not available.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+
+
+
+{% comment %} {% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h3>My Treatment Files</h3>
+
+    {% if treatment_files %}
+        <ul class="list-group">
+            {% for record in treatment_files %}
+                <li class="list-group-item">
+                    <strong>Description:</strong> {{ record.description }}<br>
+                    <a href="{{ record.document.url }}" target="_blank">📄 View Document</a><br>
+                    Uploaded on: {{ record.created_at }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <hr>
+        <h4>Your QR Code</h4>
+        {% if qr_code_base64 %}
+            <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="QR Code">
+        {% else %}
+            <p>QR Code not available.</p>
+        {% endif %}
+    {% else %}
+        <p>No files uploaded yet.</p>
+    {% endif %}
+</div>
+{% endblock %} {% endcomment %}
+
+
+{% comment %} {% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>My Treatment Files</h2>
+    {% for file in treatment_files %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <p><strong>Uploaded By:</strong> {{ file.hospital.username }}</p>
+                <p><strong>Uploaded At:</strong> {{ file.uploaded_at }}</p>
+                <a href="{{ file.file.url }}" class="btn btn-sm btn-success" target="_blank">View File</a>
+                <form method="post" action="{% url 'toggle_file_visibility' file.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm {% if file.visible_to_others %}btn-warning{% else %}btn-secondary{% endif %}">
+                        {% if file.visible_to_others %}Hide from Other Hospitals{% else %}Make Visible to Other Hospitals{% endif %}
+                    </button>
+                </form>
+            </div>
+        </div>
+    {% empty %}
+        <p>No files uploaded yet.</p>
+    {% endfor %}
+
+    <h4 class="mt-4">Your QR Code</h4>
+    <img src="{{ qr_code_url }}" alt="QR Code">
+</div>
+{% endblock %} {% endcomment %}

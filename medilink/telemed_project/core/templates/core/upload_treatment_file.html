@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .upload-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    border: 1px solid #cce5ff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+    padding: 30px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .upload-container h3 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 25px;
+  }
+
+  .upload-container label {
+    font-weight: bold;
+    color: #0056b3;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .upload-container input,
+  .upload-container select,
+  .upload-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #b3d7ff;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .upload-container button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    float: right;
+    font-size: 16px;
+  }
+
+  .upload-container button:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<div class="upload-container">
+  <h3>📤 Upload Treatment File</h3>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="{{ form.patient.id_for_label }}">👤 Select Patient</label>
+    {{ form.patient }}
+
+    <label for="{{ form.document.id_for_label }}">📁 Upload File</label>
+    {{ form.document }}
+
+    <label for="{{ form.description.id_for_label }}">📝 Description</label>
+    {{ form.description }}
+
+    <button type="submit">Upload</button>
+  </form>
+</div>
+{% endblock %}
+
+
+{% comment %} {% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h3>Upload Treatment File</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="{{ form.patient.id_for_label }}">Select Patient:</label>
+            {{ form.patient }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.document.id_for_label }}">Upload File:</label>
+            {{ form.document }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.description.id_for_label }}">Description:</label>
+            {{ form.description }}
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+</div>
+{% endblock %} {% endcomment %}
+
+
+{% comment %} {% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h3>Upload Treatment File</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_patient">Select Patient:</label>
+            {{ form.patient }}
+        </div>
+        <div class="mb-3">
+            <label for="id_file">Upload File:</label>
+            {{ form.file }}
+        </div>
+        <div class="mb-3">
+            <label for="id_description">Description:</label>
+            {{ form.description }}
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+</div>
+{% endblock %} {% endcomment %}
+
+
+{% comment %} {% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Upload Treatment File</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="patient" class="form-label">Select Patient</label>
+            <select name="patient" class="form-control" required>
+                {% for patient in patients %}
+                    <option value="{{ patient.id }}">{{ patient.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">Treatment File</label>
+            <input type="file" name="file" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+</div>
+{% endblock %} {% endcomment %}

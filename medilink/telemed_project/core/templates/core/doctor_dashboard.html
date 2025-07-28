@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Welcoming message -->
+<h2 class="mb-3 fw-bold text-primary"> Welcome, Dr. {{ request.user.username }}!👨‍⚕️</h2>
+<p class="lead text-muted">Your expertise brings healing to patients — anytime, anywhere. 🩺💬</p>
+
+<!-- Optional Tip/Info Card -->
+<div class="alert alert-info shadow-sm rounded">
+  <strong>💡 Tip of the day:</strong> Review and approve appointments early to give patients peace of mind.
+</div>
+
+<!-- Appointments Table -->
+<div class="table-responsive mt-4">
+  <table class="table table-hover table-striped table-bordered rounded shadow">
+    <thead class="table-dark">
+      <tr>
+        <th>👤 Patient</th>
+        <th>📅 Date</th>
+        <th>⏰ Time</th>
+        <th>📝 Reason</th>
+        <th>📌 Status</th>
+        <th>⚙️ Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for appointment in appointments %}
+      <tr>
+        <td>{{ appointment.patient.username }}</td>
+        <td>{{ appointment.date }}</td>
+        <td>{{ appointment.time }}</td>
+        <td>{{ appointment.reason }}</td>
+        <td>
+          {% if appointment.status == 'Pending' %}
+            <span class="badge bg-warning text-dark">Pending</span>
+          {% elif appointment.status == 'Approved' %}
+            <span class="badge bg-success">Approved</span>
+          {% elif appointment.status == 'Rejected' %}
+            <span class="badge bg-danger">Rejected</span>
+          {% else %}
+            <span class="badge bg-secondary">Unknown</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if appointment.status == 'Pending' %}
+            <a href="{% url 'update_status' appointment.id 'Approved' %}" class="btn btn-sm btn-success mb-1">✅ Approve</a>
+            <a href="{% url 'update_status' appointment.id 'Rejected' %}" class="btn btn-sm btn-danger mb-1">❌ Reject</a>
+
+          {% elif appointment.status == 'Approved' %}
+            {% if appointment.meeting_link %}
+              <a href="{{ appointment.meeting_link }}" class="btn btn-sm btn-primary mb-1" target="_blank">🔗 Join Meeting</a>
+            {% else %}
+              <span class="text-warning fw-bold">⚠️ Meeting link not generated</span>
+            {% endif %}
+
+          {% elif appointment.status == 'Rejected' %}
+            <span class="text-danger">❌ Rejected</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6" class="text-center text-muted">No appointment requests.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCue</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <!-- Linking Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static 'stylee.css' %}" />
+    <style>
+      body {
+        background: url('https://wallpaperaccess.com/full/624111.jpg') no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+      .section-title {
+        text-align: center;
+        font-size: 2rem;
+        animation: fadeIn 1.2s ease-in-out;
+        color: #003366;
+      }
+      .intro {
+        padding: 60px 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+      }
+      .intro-text h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        color: #002244;
+      }
+      .intro-text p {
+        font-size: 1.2rem;
+        color: #333;
+      }
+      @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(-10px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+</head>
+<body>
+    <div id="reminderPopup">
+        <h2>📅 Appointment Reminder</h2>
+        <p id="appointmentDetails"></p>
+        <button onclick="closePopup()">Dismiss</button>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="https://image.freepik.com/free-vector/gradient-mental-health-logo-template_23-2148820570.jpg" alt="HealthCue">
+                <h1>HealthCue</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Section 1: Intro -->
+        <section class="intro">
+            <div class="intro-text">
+                <h1>Welcome to HealthCue,BUDDY!</h1>
+                <p>Your trusted partner for health and wellness solutions tailored just for you.</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Services -->
+        <section id="services">
+          <h2 class="section-title">Our Services</h2> <br>
+          <section class="hero">
+            <div class="container swiper">
+              <div class="wrapper">
+                <div class="card-list swiper-wrapper">
+
+                  <!-- Card 1 -->
+                  <div class="card swiper-slide">
+                    <div class="card-image">
+                      <a href="{% url 'page1' %}"><img src="https://static.vecteezy.com/system/resources/previews/026/309/247/non_2x/robot-chat-or-chat-bot-logo-modern-conversation-automatic-technology-logo-design-template-vector.jpg" /></a>
+                    </div>
+                    <div class="card-content">
+                      <div class="card-footer">
+                        <div class="card-profile">
+                          <div class="card-profile-info">
+                            <span class="card-profile-name">CHATBOT</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 2 -->
+                  <div class="card swiper-slide">
+                    <div class="card-image">
+                      <a href="http://127.0.0.1:1111/"><img src="https://media.istockphoto.com/id/1219484423/vector/calendar-days-of-the-month-with-a-scheduled-reminder-and-a-ringing-phone-headset.jpg?s=612x612&w=0&k=20&c=3QPVk04F0KYo3s1TOXkDUBt5ZNIR2qnuc1gNhTJ-0NQ=" /></a>
+                    </div>
+                    <div class="card-content">
+                      <div class="card-footer">
+                        <div class="card-profile">
+                          <div class="card-profile-info">
+                            <span class="card-profile-name">BOOK APPOINTMENT</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 3 -->
+                  <div class="card swiper-slide">
+                    <div class="card-image">
+                      <a href="http://127.0.0.1:2222/"><img src="https://img.freepik.com/free-vector/hospital-bed-concept-illustration_114360-8439.jpg"/></a>
+                    </div>
+                    <div class="card-content">
+                      <div class="card-footer">
+                        <div class="card-profile">
+                          <div class="card-profile-info">
+                            <span class="card-profile-name">BED AVAILABILITY</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-slide-button swiper-button-prev"></div>
+                <div class="swiper-slide-button swiper-button-next"></div>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <!-- Section 3: Tips -->
+        <section id="Tips">
+          <h2 class="section-title">Healthy Tips</h2> <br>
+          <section class="hero">
+            <div class="container swiper">
+              <div class="wrapper">
+                <div class="card-list swiper-wrapper">
+
+                  <!-- Tip 1 -->
+                  <div class="card swiper-slide">
+                    <div class="card-image">
+                      <img src="{% static 'images/yoga.jpg' %}" />
+                    </div>
+                    <div class="card-content">
+                      <div class="card-footer">
+                        <div class="card-profile">
+                          <div class="card-profile-info">
+                            <span class="card-profile-name">YOGA</span>
+                          </div>
+                        </div>
+                        <a href="{% url 'ab1' %}" class="card-button">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tip 2 -->
+                  <div class="card swiper-slide">
+                    <div class="card-image">
+                      <img src="{% static 'images/Health.jpg' %}" />
+                    </div>
+                    <div class="card-content">
+                      <div class="card-footer">
+                        <div class="card-profile">
+                          <div class="card-profile-info">
+                            <span class="card-profile-name">DIET AND NUTRITION</span>
+                          </div>
+                        </div>
+                        <a href="{% url 'ab2' %}" class="card-button">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tip 3 -->
+                  <div class="card swiper-slide">
+                    <div class="card-image">
+                      <img src="{% static 'images/mentalhealth.jpg' %}" />
+                    </div>
+                    <div class="card-content">
+                      <div class="card-footer">
+                        <div class="card-profile">
+                          <div class="card-profile-info">
+                            <span class="card-profile-name">Mental Health Assessment</span>
+                          </div>
+                        </div>
+                        <a href="{% url 'ab3' %}" class="card-button">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-slide-button swiper-button-prev"></div>
+                <div class="swiper-slide-button swiper-button-next"></div>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <!-- Section 4: Contact -->
+        <section class="contact" id="contact">
+            <h2>Contact Us</h2>
+            <p>For inquiries or emergency support, reach out to us anytime.</p>
+            <br>
+            <form class="vertical-form" action="https://submit-form.com/JHj2t5Q6W">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" />
+                <label for="Mobile-No">Mobile number</label>
+                <input id="Mobile-No" name="Mobile-No" type="number" />
+                <label for="message">Message</label>
+                <textarea id="message" name="message" cols="15" rows="5"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 HealthCue. All rights reserved.</p>
+            <p>Contact us: +91 7760822596 | HealthCue@gmail.com</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{% static 'scriptt.js' %}"></script>
+</body>
+</html>

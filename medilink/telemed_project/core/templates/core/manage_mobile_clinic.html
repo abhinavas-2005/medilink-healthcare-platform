@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Pending Mobile Clinic Requests</h2>
+
+    {% for request in pending_requests %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <p><strong>Patient:</strong> {{ request.patient.username }}</p>
+                <p><strong>Symptoms:</strong> {{ request.symptoms }}</p>
+                <p><strong>Address:</strong> {{ request.address }}</p>
+                <p><strong>Requested At:</strong> {{ request.requested_at }}</p>
+
+                <!-- Approve Button -->
+                <button class="btn btn-sm btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#approveForm{{ request.id }}">
+                    Approve
+                </button>
+                <a href="{% url 'update_mobile_clinic_status' request.id 'Rejected' %}" class="btn btn-sm btn-danger">Reject</a>
+
+                <!-- Collapsible Approval Form -->
+                <div class="collapse mt-3" id="approveForm{{ request.id }}">
+                    <form method="post" action="{% url 'update_mobile_clinic_status' request.id 'Approved' %}">
+                        {% csrf_token %}
+                        <div class="mb-2">
+                            <label for="visit_date_{{ request.id }}">Visit Date</label>
+                            <input type="date" name="visit_date" class="form-control" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="visit_time_{{ request.id }}">Visit Time</label>
+                            <input type="time" name="visit_time" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Confirm Approval</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No pending requests.</p>
+    {% endfor %}
+
+    <hr class="my-5">
+
+    <h2 class="mb-4">Approved Requests</h2>
+    {% for request in approved_requests %}
+        <div class="card mb-3 border-success">
+            <div class="card-body">
+                <p><strong>Patient:</strong> {{ request.patient.username }}</p>
+                <p><strong>Symptoms:</strong> {{ request.symptoms }}</p>
+                <p><strong>Address:</strong> {{ request.address }}</p>
+                <p><strong>Requested At:</strong> {{ request.requested_at }}</p>
+                <p class="text-success">✅ Approved for {{ request.visit_date }} at {{ request.visit_time }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <p>No approved requests.</p>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+{% comment %} {% extends 'base.html' %}
+{% block content %}
+<h2>Manage Mobile Clinic Requests</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Patient</th><th>Address</th><th>Symptoms</th><th>Requested At</th><th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for req in requests %}
+        <tr>
+            <td>{{ req.patient.username }}</td>
+            <td>{{ req.address }}</td>
+            <td>{{ req.symptoms }}</td>
+            <td>{{ req.requested_at }}</td>
+            <td>
+                <a href="{% url 'update_mobile_clinic_status' req.id 'Approved' %}" class="btn btn-success btn-sm">Approve</a>
+                <a href="{% url 'update_mobile_clinic_status' req.id 'Rejected' %}" class="btn btn-danger btn-sm">Reject</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No pending requests.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %} {% endcomment %}
