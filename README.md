@@ -212,12 +212,6 @@ Ensure all required packages are installed in your Python environment. You may n
 II Year Project | Dayananda Sagar Academy of Technology and Management
 Passionate about HealthTech, AI, and Full-Stack Development
 
----
-
-## 📜 License
-
-This project is for academic and demonstration purposes only.
-
 ```
 Happy Coding! 👨‍⚕️💻
 
